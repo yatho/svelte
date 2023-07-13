@@ -8,6 +8,7 @@
   export let url = "/";
 </script>
 
+<Header />
 <Router {url}>
   <nav>
     <Link to="/">Home</Link>

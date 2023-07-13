@@ -1,30 +1,18 @@
-<script>
-    let temp = 0
-
-    async function getWeather() {
-        const url = `/api/v1/forecast?latitude=${import.meta.env.VITE_LATITUDE}&longitude=${import.meta.env.VITE_LONGITUDE}&current_weather=true`;
-        const options = {
-            method: 'GET',
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            temp = result?.current_weather.temperature
-        } catch (error) {
-            console.error(error);
-        }
+<script lang="ts">
+    import {getWeather} from '../services/weather';
+    let temp: number;
+    const initData = async () => {
+        temp = await getWeather(import.meta.env.VITE_LATITUDE, import.meta.env.VITE_LONGITUDE);
     }
-
-    getWeather();
-
-    if (import.meta.hot) {
-        import.meta.hot.on('vite:afterUpdate', () => {
-            console.log('updated');
-        });
-    }
+    initData();
 </script>
 
-<div>
-    {temp} degré
-</div>
+{#if !!temp}
+    <div>
+        {temp} degré
+    </div>
+{:else}
+    <div>
+        Récupération des données depuis le serveur
+    </div>
+{/if}

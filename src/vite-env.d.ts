@@ -3,8 +3,8 @@
 
 interface ImportMetaEnv {
     readonly VITE_TITLE_APP: string;
-    readonly VITE_LATITUDE: string;
-    readonly VITE_LONGITUDE: string;
+    readonly VITE_LATITUDE: number;
+    readonly VITE_LONGITUDE: number;
 }
 
 interface ImportMeta {
