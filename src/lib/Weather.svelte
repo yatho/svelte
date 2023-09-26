@@ -1,8 +1,22 @@
 <script lang="ts">
-    import {getWeather} from '../services/weather';
+    const getWeather = async () : Promise<number> => {
+        const url = `/api/v1/forecast?latitude=${import.meta.env.VITE_LATITUDE}&longitude=${import.meta.env.VITE_LONGITUDE}&current_weather=true`;
+        const options = {
+            method: 'GET',
+        };
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            return result?.current_weather.temperature
+        } catch (error) {
+            console.error(error);
+        }
+        return 0;
+    }
+
     let temp: number;
     const initData = async () => {
-        temp = await getWeather(import.meta.env.VITE_LATITUDE, import.meta.env.VITE_LONGITUDE);
+        temp = await getWeather();
     }
     initData();
 </script>
@@ -13,6 +27,6 @@
     </div>
 {:else}
     <div>
-        Récupération des données depuis le serveur
+        Chargement
     </div>
 {/if}

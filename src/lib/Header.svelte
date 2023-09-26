@@ -5,7 +5,6 @@
         <span>dev mode</span>
     {/if}
 </header>
-
 <style>
     header {
         background-color: black;

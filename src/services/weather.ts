@@ -2,8 +2,8 @@ export type weather = {
     current_weather: {temperature: number};
 }
 
-export const getWeather = async (latitude: number, longitude: number) : Promise<number> => {
-    const url = `/api/v1/forecast?latitude=${import.meta.env.VITE_LATITUDE}&longitude=${import.meta.env.VITE_LONGITUDE}&current_weather=true`;
+export const getWeather = async () : Promise<number> => {
+    const url = `/ap™i/v1/forecast?latitude=${import.meta.env.VITE_LATITUDE}&longitude=${import.meta.env.VITE_LONGITUDE}&current_weather=true`;
     const options = {
         method: 'GET',
     };
